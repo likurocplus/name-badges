@@ -1,6 +1,7 @@
 import * as XLSX from "xlsx/xlsx.mjs";
 // XLSX is a global from the standalone script
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 async function handleFileAsync(e) {
   var files = await e.target.files[0];
   if (files) {
@@ -15,7 +16,20 @@ async function handleFileAsync(e) {
       const sheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
+      const notify = () => {
+        toast.success("Upload file success!!!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          //   transition: Bounce,
+        });
+      };
+      notify();
       console.log(jsonData); // In dữ liệu ra console dưới dạng JSON
     };
   }

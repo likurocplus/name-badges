@@ -1,8 +1,20 @@
-import React, { useState } from "react";
-import handleFileAsync from "../features/UploadFile";
-function UploadButton() {
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import handleFile from "../feature/HandleFile";
+
+const UploadButton = () => {
+  //1. define file state
+  const [data, setData] = useState([]);
+  const [fileName, setFileName] = useState("Empty");
+  //2. Use useeffect hook to manage re-render if dependency(file) change
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  //3. return component
   return (
-    <div className="w-1/2 py-10">
+    <div className="w-1/2 pt-9">
       <div className="flex items-center justify-center w-full">
         <label
           htmlFor="dropzone-file"
@@ -31,11 +43,24 @@ function UploadButton() {
               XLSX or XLS
             </p>
           </div>
-          <input id="dropzone-file" type="file" className="hidden" />
+          <input
+            onChange={(e) => {
+              handleFile(e, setData, setFileName);
+            }}
+            id="dropzone-file"
+            type="file"
+            className="hidden"
+          />
+          <ToastContainer />
         </label>
+      </div>
+      <div className="pt-2 ">
+        <p className=" text-sm text-gray-500 dark:text-gray-400 font-semibold block text-center">
+          {fileName}
+        </p>
       </div>
     </div>
   );
-}
+};
 
 export default UploadButton;
