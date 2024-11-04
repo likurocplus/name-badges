@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import handleFile from "../feature/HandleFile";
+import processImg from "../feature/Process";
+import { useReactToPrint } from "react-to-print";
 
 const UploadButton = () => {
-  //1. define file state
   const [data, setData] = useState([]);
   const [fileName, setFileName] = useState("Empty");
-  //2. Use useeffect hook to manage re-render if dependency(file) change
+  const [nameBadgesComponents, setNameBadgesComponents] = useState(null);
+  const contentRef = useRef(null);
+  const reactToPrintFn = useReactToPrint({ contentRef });
+
   useEffect(() => {
     console.log(data);
   }, [data]);
 
-  //3. return component
+  const handlePreview = () => {
+    setNameBadgesComponents(processImg(data));
+  };
+
   return (
     <div className="w-1/2 pt-9">
       <div className="flex items-center justify-center w-full">
@@ -44,9 +51,7 @@ const UploadButton = () => {
             </p>
           </div>
           <input
-            onChange={(e) => {
-              handleFile(e, setData, setFileName);
-            }}
+            onChange={(e) => handleFile(e, setData, setFileName)}
             id="dropzone-file"
             type="file"
             className="hidden"
@@ -54,11 +59,28 @@ const UploadButton = () => {
           <ToastContainer />
         </label>
       </div>
-      <div className="pt-2 ">
-        <p className=" text-sm text-gray-500 dark:text-gray-400 font-semibold block text-center">
+      <div className="pt-2">
+        <p className="text-sm text-gray-500 dark:text-gray-400 font-semibold text-center">
           {fileName}
         </p>
       </div>
+      <div className="flex justify-center pt-5">
+        <button
+          onClick={handlePreview}
+          type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Preview
+        </button>
+        <button
+          onClick={reactToPrintFn}
+          type="button"
+          className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        >
+          Print
+        </button>
+      </div>
+      <div ref={contentRef}>{nameBadgesComponents}</div>
     </div>
   );
 };
