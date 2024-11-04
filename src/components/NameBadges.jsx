@@ -1,5 +1,5 @@
 import React from "react";
-import Badges from "./Badge";
+import Badge from "./Badge";
 
 const NameBadges = ({ dataOneBadge }) => {
   // 1. split the badge data into two columns

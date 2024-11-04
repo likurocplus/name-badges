@@ -1,6 +1,6 @@
 import React from "react";
 
-const Badges = ({ data }) => {
+const Badge = ({ data }) => {
   return (
     <div className="w-full mt-[130px] pt-[30px] ">
       <p className="font-bold text-3xl text-cyan-900 pb-8 block text-center">
@@ -12,4 +12,4 @@ const Badges = ({ data }) => {
   );
 };
 
-export default Badges;
+export default Badge;
