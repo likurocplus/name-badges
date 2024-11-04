@@ -16,7 +16,7 @@ const NameBadges = ({ dataA4 }) => {
     <div
       className="bg-contain h-[297mm] w-[210mm]"
       style={{
-        backgroundImage: `url("/bg.jpg")`,
+        backgroundImage: `url("/public/bg.jpg")`,
       }}
     >
       <div className="flex">
