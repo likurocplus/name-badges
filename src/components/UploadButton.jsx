@@ -6,22 +6,37 @@ import processImg from "../feature/Process";
 import { useReactToPrint } from "react-to-print";
 
 const UploadButton = () => {
+  // 1. state for store uploaded data from file
   const [data, setData] = useState([]);
+
+  // 2. state to store the name of the uploaded file
   const [fileName, setFileName] = useState("Empty");
+
+  // 3. state for store generated name badge components for preview
   const [nameBadgesComponents, setNameBadgesComponents] = useState(null);
+
+  // 4. reference for printing content
   const contentRef = useRef(null);
+  // 5. setting up react-to-print for print func with contentRef
   const reactToPrintFn = useReactToPrint({ contentRef });
 
+  //log data updates
   useEffect(() => {
     console.log(data);
   }, [data]);
 
+  //6. Feature: call setNameBadgesComponents to update list NameBadges items
+  //Input: none
+  //Process: call setNameBadgesComponents with parameter is processImg func to get list NameBadges items
+  //Output: NameBadgesComponents be updated(list NameBadges items)
   const handlePreview = () => {
     setNameBadgesComponents(processImg(data));
   };
 
+  //7. Return Update Button / Process Button / Print Button
   return (
     <div className="w-1/2 pt-9">
+      {/* Update Button  */}
       <div className="flex items-center justify-center w-full">
         <label
           htmlFor="dropzone-file"
@@ -56,14 +71,17 @@ const UploadButton = () => {
             type="file"
             className="hidden"
           />
+          {/* Show Toast  */}
           <ToastContainer />
         </label>
       </div>
+      {/* show file name  */}
       <div className="pt-2">
         <p className="text-sm text-gray-500 dark:text-gray-400 font-semibold text-center">
           {fileName}
         </p>
       </div>
+      {/* Preview button  */}
       <div className="flex justify-center pt-5">
         <button
           onClick={handlePreview}
@@ -72,6 +90,7 @@ const UploadButton = () => {
         >
           Preview
         </button>
+        {/* Print Button  */}
         <button
           onClick={reactToPrintFn}
           type="button"
@@ -80,6 +99,7 @@ const UploadButton = () => {
           Print
         </button>
       </div>
+      {/* show list badges  */}
       <div ref={contentRef}>{nameBadgesComponents}</div>
     </div>
   );
