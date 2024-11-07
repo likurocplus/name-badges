@@ -20,20 +20,42 @@ const UploadButton = () => {
   // 5. setting up react-to-print for print func with contentRef
   const reactToPrintFn = useReactToPrint({ contentRef });
 
+  //6. State to track whether the checkbox is checked
+  const [omitFirstRow, setOmitFirstRow] = useState(true);
+
+  //7. State for column mappings
+  const [columnMappings, setColumnMappings] = useState({
+    firstName: "First Name",
+    lastName: "Last Name",
+    title: "Job Title",
+    company: "Company Name",
+  });
+
   //log data updates
   useEffect(() => {
     console.log(data);
   }, [data]);
 
-  //6. Feature: call setNameBadgesComponents to update list NameBadges items
+  //7. Feature: call setNameBadgesComponents to update list NameBadges items
   //Input: none
   //Process: call setNameBadgesComponents with parameter is processImg func to get list NameBadges items
   //Output: NameBadgesComponents be updated(list NameBadges items)
   const handlePreview = () => {
-    setNameBadgesComponents(processImg(data));
+    setNameBadgesComponents(processImg(data, omitFirstRow, columnMappings));
   };
 
-  //7. Return Update Button / Process Button / Print Button
+  // Handle column mapping change
+  const handleMappingChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name);
+    console.log(value);
+    setColumnMappings((prevMappings) => ({
+      ...prevMappings,
+      [name]: value,
+    }));
+  };
+
+  //8. Return Update Button / Process Button / Print Button
   return (
     <div className="w-1/2 pt-9">
       {/* Update Button  */}
@@ -81,6 +103,87 @@ const UploadButton = () => {
           {fileName}
         </p>
       </div>
+      {/* Check Omit First Row  */}
+      <div className="flex justify-center">
+        <label className="text-sm text-gray-500 dark:text-gray-400 font-semibold">
+          <input
+            type="checkbox"
+            checked={omitFirstRow}
+            onChange={() => setOmitFirstRow(!omitFirstRow)}
+          />
+          Omit First Row
+        </label>
+      </div>
+      <h2 className="text-xl text-gray-900 dark:text-gray-900 font-semibold block text-center">
+        Custom Mapping
+      </h2>
+      {/* Custom Mapping  */}
+      <div className="max-w-sm mx-auto">
+        <div className="mb-5">
+          <label
+            for="firstName"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            First Name
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="Ex: firstname"
+            onChange={handleMappingChange}
+          />
+        </div>
+        <div className="mb-5">
+          <label
+            for="lastName"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Last Name
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="Ex: lastname"
+            onChange={handleMappingChange}
+          />
+        </div>
+        <div className="mb-5">
+          <label
+            for="title"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Job Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="Ex: title"
+            onChange={handleMappingChange}
+          />
+        </div>
+        <div className="mb-5">
+          <label
+            for="company"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Company
+          </label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="Ex: company"
+            onChange={handleMappingChange}
+          />
+        </div>
+      </div>
       {/* Preview button  */}
       <div className="flex justify-center pt-5">
         <button
@@ -99,6 +202,7 @@ const UploadButton = () => {
           Print
         </button>
       </div>
+
       {/* show list badges  */}
       <div ref={contentRef}>{nameBadgesComponents}</div>
     </div>

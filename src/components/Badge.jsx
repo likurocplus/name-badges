@@ -7,7 +7,7 @@ const Badge = ({ data }) => {
         {data["Last Name"] + " " + data["First Name"]}
       </p>
       <p className="text-2xl block text-center">{data["Job Title"]}</p>
-      <p className="text-2xl block text-center">{data["Company"]}</p>
+      <p className="text-2xl block text-center">{data["Company Name"]}</p>
     </div>
   );
 };
