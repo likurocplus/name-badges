@@ -28,7 +28,7 @@ const UploadButton = () => {
     firstName: "First Name",
     lastName: "Last Name",
     title: "Job Title",
-    company: "Company Name",
+    company: "Company",
   });
 
   //log data updates
@@ -36,7 +36,7 @@ const UploadButton = () => {
     console.log(data);
   }, [data]);
 
-  //7. Feature: call setNameBadgesComponents to update list NameBadges items
+  //8. Feature: call setNameBadgesComponents to update list NameBadges items
   //Input: none
   //Process: call setNameBadgesComponents with parameter is processImg func to get list NameBadges items
   //Output: NameBadgesComponents be updated(list NameBadges items)
@@ -44,7 +44,7 @@ const UploadButton = () => {
     setNameBadgesComponents(processImg(data, omitFirstRow, columnMappings));
   };
 
-  // Handle column mapping change
+  //9 Handle column mapping change
   const handleMappingChange = (event) => {
     const { name, value } = event.target;
     console.log(name);
@@ -55,7 +55,7 @@ const UploadButton = () => {
     }));
   };
 
-  //8. Return Update Button / Process Button / Print Button
+  //10. Return Update Button / Process Button / Print Button
   return (
     <div className="w-1/2 pt-9">
       {/* Update Button  */}
@@ -124,7 +124,7 @@ const UploadButton = () => {
             for="firstName"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            First Name
+            Column 1
           </label>
           <input
             type="text"
@@ -140,7 +140,7 @@ const UploadButton = () => {
             for="lastName"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Last Name
+            Column 2
           </label>
           <input
             type="text"
@@ -156,7 +156,7 @@ const UploadButton = () => {
             for="title"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Job Title
+            Column 3
           </label>
           <input
             type="text"
@@ -172,7 +172,7 @@ const UploadButton = () => {
             for="company"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Company
+            Column 4
           </label>
           <input
             type="text"

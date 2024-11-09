@@ -28,11 +28,11 @@ const processImg = (data, omitFirstRow, columnMappings) => {
         "First Name": data[index][columnMappings.firstName],
         "Last Name": data[index][columnMappings.lastName],
         "Job Title": data[index][columnMappings.title],
-        "Company Name": data[index][columnMappings.company],
+        Company: data[index][columnMappings.company],
       }); // Add item to tmpArr
       index++; // move to the next item in the data array
     }
-
+    console.log(tmpArr);
     // 3.3 create a NameBadges component and push them on badgesComponents array
     badgesComponents.push(
       <NameBadges dataOneBadge={tmpArr} columnMappings={columnMappings} />

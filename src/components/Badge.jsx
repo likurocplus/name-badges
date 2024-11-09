@@ -2,12 +2,13 @@ import React from "react";
 
 const Badge = ({ data }) => {
   return (
-    <div className="w-full mt-[130px] pt-[30px] ">
-      <p className="font-bold text-3xl text-cyan-900 pb-8 block text-center">
+    <div className="w-full">
+      <p className="font-bold text-3xl text-cyan-900 block text-center">
         {data["Last Name"] + " " + data["First Name"]}
       </p>
+      <br />
       <p className="text-2xl block text-center">{data["Job Title"]}</p>
-      <p className="text-2xl block text-center">{data["Company Name"]}</p>
+      <p className="text-2xl block text-center">{data.Company}</p>
     </div>
   );
 };
