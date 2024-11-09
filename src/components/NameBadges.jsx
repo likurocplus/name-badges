@@ -7,6 +7,33 @@ const NameBadges = ({ dataOneBadge }) => {
   const dataRow2 = dataOneBadge.slice(2, 4); // Next 2 badges
   const dataRow3 = dataOneBadge.slice(4, 6); // Next 2 badges
 
+  if (dataRow1.length == 1) {
+    dataRow1.push({
+      "First Name": "",
+      "Last Name": "",
+      "Job Title": "",
+      Company: "",
+    });
+  }
+
+  if (dataRow2.length == 1) {
+    dataRow2.push({
+      "First Name": "",
+      "Last Name": "",
+      "Job Title": "",
+      Company: "",
+    });
+  }
+
+  if (dataRow3.length == 1) {
+    dataRow3.push({
+      "First Name": "",
+      "Last Name": "",
+      "Job Title": "",
+      Company: "",
+    });
+  }
+
   // 2. mapping each element in dataCol1 and dataCol2 to <Badges /> components
   const returnRow1 = dataRow1.map((element) => <Badge data={element} />);
   const returnRow2 = dataRow2.map((element) => <Badge data={element} />);

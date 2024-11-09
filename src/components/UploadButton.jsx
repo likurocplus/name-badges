@@ -47,8 +47,6 @@ const UploadButton = () => {
   //9 Handle column mapping change
   const handleMappingChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
     setColumnMappings((prevMappings) => ({
       ...prevMappings,
       [name]: value,
