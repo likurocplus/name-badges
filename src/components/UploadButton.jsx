@@ -131,7 +131,7 @@ const UploadButton = () => {
             id="firstName"
             name="firstName"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="Ex: firstname"
+            placeholder="Default: First Name"
             onChange={handleMappingChange}
           />
         </div>
@@ -147,7 +147,7 @@ const UploadButton = () => {
             id="lastName"
             name="lastName"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="Ex: lastname"
+            placeholder="Default: Last Name"
             onChange={handleMappingChange}
           />
         </div>
@@ -163,7 +163,7 @@ const UploadButton = () => {
             id="title"
             name="title"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="Ex: title"
+            placeholder="Default: Job Title"
             onChange={handleMappingChange}
           />
         </div>
@@ -179,7 +179,7 @@ const UploadButton = () => {
             id="company"
             name="company"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="Ex: company"
+            placeholder="Default: Company"
             onChange={handleMappingChange}
           />
         </div>
