@@ -1,6 +1,6 @@
 import React from "react";
 import Badge from "./Badge";
-
+// import "./NameBadge.css";
 const NameBadges = ({ dataOneBadge }) => {
   // 1. split the badge data into two columns
   const dataRow1 = dataOneBadge.slice(0, 2); // First 2 badges
@@ -42,19 +42,21 @@ const NameBadges = ({ dataOneBadge }) => {
   return (
     <div
       // 3. setting the background image
-      className="bg-contain h-[297mm] w-[210mm]"
-      style={{
-        backgroundImage: `url("https://i.postimg.cc/59b3QTyy/image.png")`, // URL of the background image
-      }}
+      className="relative h-[297mm] w-[210mm]"
     >
+      <img
+        src="https://i.postimg.cc/59b3QTyy/image.png"
+        alt="Background"
+        className="absolute top-0 left-0 h-full w-full object-contain z-0"
+      />
       {/* 4. rendering 3 row */}
       <div className="flex flex-col h-full relative">
         {/* 4.1 row 1 with spacing for badges */}
-        <div className="flex w-full absolute top-[160px]">{returnRow1}</div>
+        <div className="flex w-full absolute top-[210px]">{returnRow1}</div>
         {/* 4.2 row 2 with spacing for badges */}
-        <div className="flex w-full absolute top-[450px]">{returnRow2}</div>
+        <div className="flex w-full absolute top-[500px]">{returnRow2}</div>
         {/* 4.3 row 3 with spacing for badges */}
-        <div className="flex w-full absolute top-[730px]">{returnRow3}</div>
+        <div className="flex w-full absolute top-[770px]">{returnRow3}</div>
       </div>
     </div>
   );

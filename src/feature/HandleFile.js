@@ -29,9 +29,13 @@ const handleFile = async (e, setFile, setFileName) => {
 
       //4.3 convert sheet to json
       const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
+      const firstRow = Object.keys(jsonData[0]);
+      const arr = [firstRow];
+      for (const element of jsonData) {
+        arr.push(Object.values(element));
+      }
       //4.4 update new file
-      setFile(jsonData);
+      setFile(arr);
 
       //4.5 show popup success
       showSuccessPopup();

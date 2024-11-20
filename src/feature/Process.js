@@ -5,7 +5,7 @@ import React from "react";
 // Input: The function takes in an array data (data from Upload).
 // Process: It divides the data array into chunks of 6 elements each, creating a new component (NameBadges) for each chunk.
 // Output: return an array of NameBadges components, each contain 6 items from the data array.
-const processImg = (data, omitFirstRow, columnMappings) => {
+const processImg = (data, omitFirstRow) => {
   // 1. initialize index to keep current position in the data array
   let index = 0;
 
@@ -25,17 +25,17 @@ const processImg = (data, omitFirstRow, columnMappings) => {
     // 3.2 loop to gather 6 items, or until the end of the data array
     for (let j = 0; j < 6 && index < data.length; j++) {
       tmpArr.push({
-        "First Name": data[index][columnMappings.firstName],
-        "Last Name": data[index][columnMappings.lastName],
-        "Job Title": data[index][columnMappings.title],
-        Company: data[index][columnMappings.company],
+        "First Name": data[index][0],
+        "Last Name": data[index][1],
+        "Job Title": data[index][2],
+        Company: data[index][3],
       }); // Add item to tmpArr
       index++; // move to the next item in the data array
     }
     console.log(tmpArr);
     // 3.3 create a NameBadges component and push them on badgesComponents array
     badgesComponents.push(
-      <NameBadges dataOneBadge={tmpArr} columnMappings={columnMappings} />
+      <NameBadges dataOneBadge={tmpArr} />
     );
   }
 
